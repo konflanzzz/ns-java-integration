@@ -89,7 +89,7 @@ public class NFeConstructor {
         infNFeIde.setMod("55");
         infNFeIde.setSerie("0");
         infNFeIde.setNNF("22539");
-        infNFeIde.setDhEmi(Util.dhEmiSet());
+        infNFeIde.setDhEmi(Util.setDhEmi());
         infNFeIde.setTpNF("1");
         infNFeIde.setIdDest("1");
         infNFeIde.setCMunFG("4305108");
@@ -209,6 +209,8 @@ public class NFeConstructor {
             dadosProdutoNFe.setVUnTrib("3.00");
             dadosProdutoNFe.setIndTot("1");
             dadosProdutoNFe.setNItemPed("0");
+
+            arrayOfProdutos[i] = dadosProdutoNFe;
         }
 
         return arrayOfProdutos;
@@ -232,9 +234,10 @@ public class NFeConstructor {
             NFeInfNFeDetImposto.getContent().add(generateCofins());
 
             NFeInfNFeDetImpostoJAXBElement.setValue(NFeInfNFeDetImposto);
+
+            arrayOfNFeInfNFeDetImposto[i] = NFeInfNFeDetImposto;
+
         }
-
-
 
         return arrayOfNFeInfNFeDetImposto;
     }

@@ -7,8 +7,11 @@ import javax.xml.bind.JAXBException;
 public class gerarLayoutNFe {
 
     public static void main(String[] args) throws JAXBException {
-        String notafiscal = NFeConstructor.nfeToXML(NFeConstructor.generateTNFe());
-        System.out.println(notafiscal);
+        String doc = NFeConstructor.nfeToXML(NFeConstructor.generateTNFe());
+
+
+//        System.out.println(doc);
     }
+
 
 }

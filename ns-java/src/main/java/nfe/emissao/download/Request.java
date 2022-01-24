@@ -2,7 +2,7 @@ package nfe.emissao.download;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ns.commons.NSAPI;
+import ns.commons.API;
 
 public class Request {
     public static Response sendPostRequest(Body requestBody) throws JsonProcessingException {
@@ -13,10 +13,10 @@ public class Request {
         String jsonRequestBody = mapper.writeValueAsString(requestBody);
 
         try {
-            return mapper.readValue(NSAPI.postRequest(jsonRequestBody,url,"json"), Response.class);
+            return mapper.readValue(API.postRequest(jsonRequestBody,url,"json"), Response.class);
         }
         catch (Exception ex){
-            System.out.printf("ERRO: "  + ex); //log
+            System.out.print("ERRO: "  + ex); //log
         }
         return null;
     }
