@@ -37,8 +37,8 @@ public class NFeConstructor {
 
     // generate de full TNFe object
     public static TNFe generateTNFe(){
-        TNFe NFe = new TNFe();
-        NFe.setInfNFe(
+        TNFe nfe = new TNFe();
+        nfe.setInfNFe(
                 generateInfNFe(
                         "",
                         generateIde(),
@@ -60,13 +60,14 @@ public class NFeConstructor {
                         generateInfAdic()
                 )
         );
-        return NFe;
+        return nfe;
     }
 
     public static TNFe.InfNFe generateInfNFe( String Id, TNFe.InfNFe.Ide ide, TNFe.InfNFe.Emit emit, TNFe.InfNFe.Dest dest, List<TNFe.InfNFe.Det> det, TNFe.InfNFe.Total total, TNFe.InfNFe.Transp transp, TNFe.InfNFe.Pag pag, TNFe.InfNFe.InfAdic infAdic){
         TNFe.InfNFe nfeInfNFe = new TNFe.InfNFe();
 
         nfeInfNFe.setId(Id);
+        nfeInfNFe.setVersao("4.00");
         nfeInfNFe.setIde(ide);
         nfeInfNFe.setEmit(emit);
         nfeInfNFe.setDest(dest);
@@ -174,8 +175,8 @@ public class NFeConstructor {
                 TNFe.InfNFe.Det uniqueDet = new TNFe.InfNFe.Det();
 
                 uniqueDet.setNItem(String.valueOf(i));
-                uniqueDet.setProd(prodArray[0]);
-                uniqueDet.setImposto(impostoArray[0]);
+                uniqueDet.setProd(prodArray[i]);
+                uniqueDet.setImposto(impostoArray[i]);
 
                 nfeInfNFeDetList.add(uniqueDet);
             }
@@ -225,13 +226,16 @@ public class NFeConstructor {
 
             JAXBElement<TNFe.InfNFe.Det.Imposto> NFeInfNFeDetImpostoJAXBElement = new JAXBElement(
                     new QName("http://www.portalfiscal.inf.br/nfe"),
-                    TNFe.InfNFe.Det.Imposto.ICMS.class,
+                    TNFe.InfNFe.Det.Imposto.class,
                     NFeInfNFeDetImposto
             );
+
 
             NFeInfNFeDetImposto.getContent().add(generateIcms());
             NFeInfNFeDetImposto.getContent().add(generatePis());
             NFeInfNFeDetImposto.getContent().add(generateCofins());
+
+            int a = NFeInfNFeDetImposto.getContent().size();
 
             NFeInfNFeDetImpostoJAXBElement.setValue(NFeInfNFeDetImposto);
 
